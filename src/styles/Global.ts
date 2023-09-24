@@ -101,7 +101,7 @@ select {
 }
 
 .icon {
-  color: white;
+  color: ${theme.colors.primary};
   font-size: 32px;
   cursor: pointer;
   transition: color .2s ease-in-out;
@@ -110,5 +110,22 @@ select {
 .icon:hover {
   color: ${theme.colors.secondary};
   transform: scale(1.05);
+}
+
+.nav-icon {
+  position: relative;
+}
+
+.nav-icon::after {
+  display: inline-block;
+  content: attr(data-count);
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: ${theme.colors.secondary};
+  color: white;
+  font-size: 14px;
+  padding: 0 6px;
+  border-radius: 999px;
 }
 `;

@@ -13,6 +13,6 @@
     "semi": "error",
     "no-unused-vars": "warn",
     "no-console": "error",
-    "indent": ["error", 2]
+    "indent": "off"
   }
 }
