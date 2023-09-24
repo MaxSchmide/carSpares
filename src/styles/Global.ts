@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { theme } from './Theme';
 
 export const GlobalStyles = createGlobalStyle`
 /* Box sizing rules */
@@ -10,20 +11,16 @@ export const GlobalStyles = createGlobalStyle`
 
 html {
   font-size: 100%;
+  font-family: "Mont", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  font-family: ${({ theme }) => theme.fonts}, sans-serif;
-  font-size: 1rem;
-  color: ${({ theme }) => theme.colors};
-  background-color: ${({ theme }) => theme.colors};
-  line-height: 1;
 }
+
 h1,
 h2,
 h3,
@@ -39,6 +36,7 @@ dd {
   padding: 0;
   margin: 0;
 }
+
 button {
   border: none;
   background-color: transparent;
@@ -46,18 +44,22 @@ button {
   padding: 0;
   cursor: pointer;
 }
+
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
 }
+
 li {
   list-style-type: none;
 }
+
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
 }
+
 /* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;
@@ -77,6 +79,7 @@ textarea,
 select {
   font: inherit;
 }
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
@@ -91,5 +94,21 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+.container {
+  padding: 0 48px;
+}
+
+.icon {
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  transition: color .2s ease-in-out;
+}
+
+.icon:hover {
+  color: ${theme.colors.secondary};
+  transform: scale(1.05);
 }
 `;

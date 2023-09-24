@@ -1,10 +1,10 @@
-import Header from '@/components/Header';
+import MyHeader from '@/components/Header/Header';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <Header />
+    <div className="container">
+      <MyHeader />
       <main>{children}</main>
-    </>
+    </div>
   );
 }
