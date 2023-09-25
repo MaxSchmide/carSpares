@@ -28,10 +28,6 @@ export const ListItem = styled.li`
   &:hover .submenu {
     display: block;
   }
-
-  &[aria-disabled='true'] {
-    pointer-events: none;
-  }
 `;
 
 export const Submenu = styled.div`

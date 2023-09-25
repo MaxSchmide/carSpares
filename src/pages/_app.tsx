@@ -1,18 +1,16 @@
+import StylesProvider from '@/providers/StylesProvider';
 import type { AppProps } from 'next/app';
 import Layout from './layout';
-import { GlobalStyles, theme } from '@/styles';
-import { ThemeProvider } from 'styled-components';
-import StyledComponentsRegistry from '@/lib/styled';
+import StoreProvider from '@/providers/StoreProvider';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <StyledComponentsRegistry>
+    <StoreProvider>
+      <StylesProvider>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </StyledComponentsRegistry>
-    </ThemeProvider>
+      </StylesProvider>
+    </StoreProvider>
   );
 }

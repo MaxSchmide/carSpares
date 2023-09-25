@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 4px;
 `;
 
 export const Loader = styled.div<SpinnerProps>`

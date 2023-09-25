@@ -1,75 +1,58 @@
-/* eslint-disable no-console */
-import { ICategory } from '@/types/category';
-import axios from 'axios';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useGetCategoriesQuery } from '@/redux';
 import { getChildCategories } from '@/utils/getVisibleCategories';
-import { Container, ListItem, Submenu, Ul } from './Catalog.styled';
 import Link from 'next/link';
-import { Spinner } from '../Spinner';
+import { useMemo, useState } from 'react';
+import { Container, ListItem, Submenu, Ul } from './Catalog.styled';
+import LoadingProvider from '@/providers/LoadingProvider';
 
 const Catalog = () => {
-  const [categories, setCategories] = useState<ICategory[]>([]);
+  const { isLoading, data } = useGetCategoriesQuery();
   const [selected, setSelected] = useState<string>('');
 
   const parentCategories = useMemo(
-    () => categories.filter((cat) => !cat.parent),
-    [categories],
+    () => data?.filter((cat) => !cat.parent),
+    [data],
   );
 
-  const childCategories = getChildCategories(categories, selected);
-
-  const getCategories = async () => {
-    try {
-      await axios
-        .get('/api/categories')
-        .then(({ data }) => setCategories(data));
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    getCategories();
-  }, []);
+  const childCategories = getChildCategories(data, selected);
 
   return (
     <Container>
-      <Ul onMouseLeave={() => setSelected('')}>
-        {parentCategories.length > 0 ? (
-          parentCategories.map((category) => (
-            <ListItem
-              key={category._id}
-              onMouseEnter={() => setSelected(category._id)}
-            >
-              <Link
-                href={`/categories/${category._id}`}
-                className="category-link"
+      <LoadingProvider
+        isLoading={isLoading}
+        size={25}
+      >
+        <Ul onMouseLeave={() => setSelected('')}>
+          {parentCategories &&
+            parentCategories.map((category) => (
+              <ListItem
+                key={category._id}
+                onMouseEnter={() => setSelected(category._id)}
               >
-                {category.label}
-              </Link>
-              <Submenu className="submenu">
-                {childCategories.map((cat) => (
-                  <ListItem
-                    key={cat._id}
-                    aria-disabled={cat._id === 0}
-                  >
-                    <Link
-                      href={`/categories/${cat._id}`}
-                      className="category-link"
-                    >
-                      {cat.label}
-                    </Link>
-                  </ListItem>
-                ))}
-              </Submenu>
-            </ListItem>
-          ))
-        ) : (
-          <ListItem>
-            <Spinner size={25} />
-          </ListItem>
-        )}
-      </Ul>
+                <Link
+                  href={`/categories/${category._id}`}
+                  className="category-link"
+                >
+                  {category.label}
+                </Link>
+                {childCategories && childCategories?.length > 0 && (
+                  <Submenu className="submenu">
+                    {childCategories.map((cat) => (
+                      <ListItem key={cat._id}>
+                        <Link
+                          href={`/categories/${cat._id}`}
+                          className="category-link"
+                        >
+                          {cat.label}
+                        </Link>
+                      </ListItem>
+                    ))}
+                  </Submenu>
+                )}
+              </ListItem>
+            ))}
+        </Ul>
+      </LoadingProvider>
     </Container>
   );
 };

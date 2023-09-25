@@ -1,17 +1,14 @@
 import { ICategory } from '@/types/category';
 
 export const getChildCategories = (
-  categories: ICategory[],
+  categories: ICategory[] | undefined,
   selected: string,
 ) => {
-  let visible = categories.filter((cat) => !cat.parent);
-  const emptyItem = { _id: 0, label: 'No Matches' };
-
   if (selected.length) {
-    visible = categories.filter(
+    const visible = categories?.filter(
       (category) => category.parent?._id === selected,
     );
-  }
 
-  return visible.length > 0 ? visible : [emptyItem];
+    return visible;
+  } else return [];
 };
