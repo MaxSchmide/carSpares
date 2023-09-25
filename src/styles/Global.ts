@@ -133,4 +133,7 @@ select {
   text-decoration: none;
   color: inherit;
 }
+.menu-icon {
+  transition: transform .2s ease-in-out;
+}
 `;

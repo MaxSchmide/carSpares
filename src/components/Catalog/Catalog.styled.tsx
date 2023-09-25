@@ -19,6 +19,9 @@ export const ListItem = styled.li`
   position: relative;
   color: ${theme.colors.primary};
   user-select: none;
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     color: ${theme.colors.secondary};
@@ -27,6 +30,10 @@ export const ListItem = styled.li`
 
   &:hover .submenu {
     display: block;
+  }
+
+  &:hover .menu-icon {
+    transform: translateX(5px);
   }
 `;
 
