@@ -5,7 +5,6 @@ export interface ICategory {
   parent?: Omit<ICategory, 'parent'>;
   properties?: IProperty[];
   image: Omit<ICategoryImage, 'id'>;
-  [key: string]: any;
 }
 
 interface IProperty {

@@ -1,9 +1,20 @@
 import logo from '@/assets/logo.svg';
+import { Button } from '@/components/Button';
+import CatalogIcon from '@/styles/Icons/Catalog.icon';
+import SearchIcon from '@/styles/Icons/Search.icon';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import {
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+  AiOutlineUser,
+} from 'react-icons/ai';
+import Catalog from '../Catalog/Catalog';
 import {
   Bottom,
   Buttons,
-  Catalog,
+  CatalogButton,
   Form,
   Input,
   Label,
@@ -11,17 +22,9 @@ import {
   Select,
   Top,
 } from './Header.styled';
-import {
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-} from 'react-icons/ai';
-import Link from 'next/link';
-import CatalogIcon from '@/styles/Icons/Catalog.icon';
-import SearchIcon from '@/styles/Icons/Search.icon';
-import { Button } from '@/components/Button';
 
 export const Header = () => {
+  const [showCatalog, setShowCatalog] = useState(false);
   return (
     <header>
       <Top>
@@ -60,10 +63,11 @@ export const Header = () => {
         </Buttons>
       </Top>
       <Bottom>
-        <Catalog>
+        <CatalogButton onClick={() => setShowCatalog(!showCatalog)}>
           <CatalogIcon />
           <p>Catalog</p>
-        </Catalog>
+        </CatalogButton>
+        {showCatalog && <Catalog />}
         <Buttons>
           <Link href="/profile">
             <AiOutlineUser className="icon" />

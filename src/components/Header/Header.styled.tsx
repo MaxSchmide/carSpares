@@ -12,6 +12,7 @@ export const Top = styled.div`
 `;
 
 export const Bottom = styled.div`
+  position: relative;
   padding-right: 24px;
 
   display: flex;
@@ -20,15 +21,15 @@ export const Bottom = styled.div`
   background-color: #eee;
 `;
 
-export const Catalog = styled.div`
-  padding: 12px 24px;
-  background-color: ${theme.colors.secondary};
-  color: white;
-  font-size: 24px;
+export const CatalogButton = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 12px 24px;
+  color: white;
+  font-size: 24px;
   cursor: pointer;
+  background-color: ${theme.colors.secondary};
   transition: background-color 0.2s ease-in-out;
   user-select: none;
   &:hover {

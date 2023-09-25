@@ -128,4 +128,9 @@ select {
   padding: 0 6px;
   border-radius: 999px;
 }
+
+.category-link{
+  text-decoration: none;
+  color: inherit;
+}
 `;
