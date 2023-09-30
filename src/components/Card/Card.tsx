@@ -33,6 +33,7 @@ export const Card = ({ product }: Props) => {
           sizes="100%"
           src={product.image}
           alt={product.title}
+          priority
         />
         <Icon onClick={() => handleToggleFavourite(product)}>
           <FavouriteIcon

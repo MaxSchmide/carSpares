@@ -15,6 +15,9 @@ export const favouritesSlice = createSlice({
   name: 'favourites',
   initialState,
   reducers: {
+    initFavourites: (state) => {
+      state.items = JSON.parse(localStorage.getItem('favourites') || '[]');
+    },
     toggleFavouriteItem: (state, action: PayloadAction<IProductCard>) => {
       if (state.items.some((product) => product._id === action.payload._id)) {
         state.items = state.items.filter(
@@ -29,4 +32,4 @@ export const favouritesSlice = createSlice({
   },
 });
 
-export const { toggleFavouriteItem } = favouritesSlice.actions;
+export const { toggleFavouriteItem, initFavourites } = favouritesSlice.actions;

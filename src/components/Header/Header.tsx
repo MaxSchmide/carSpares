@@ -66,7 +66,7 @@ export const Header = () => {
             width={100}
             src={'/logo.svg'}
             alt="Car Spares"
-            loading="eager"
+            priority
           />
         </Link>
         <Form onSubmit={handleSubmitSearch}>
