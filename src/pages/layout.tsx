@@ -9,6 +9,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Head>
         <title>CarSpares</title>
         <link
+          rel="shortcut icon"
+          href="favicon.svg"
+          type="image/x-icon"
+        />
+        <meta
+          name="description"
+          content="An Online auto shop with car parts"
+        />
+        <link
           rel="manifest"
           href="manifest.json"
         />
