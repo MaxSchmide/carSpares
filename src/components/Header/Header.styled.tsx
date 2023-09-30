@@ -18,7 +18,7 @@ export const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #eee;
+  background-color: #fff;
 `;
 
 export const CatalogButton = styled.div`
@@ -55,7 +55,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Label = styled.label`
+export const Label = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

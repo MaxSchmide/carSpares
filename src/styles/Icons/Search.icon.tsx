@@ -16,12 +16,10 @@ const Icon = styled.span`
   }
 `;
 
-const SearchIcon = () => {
+export const SearchIcon = () => {
   return (
     <Icon>
       <AiOutlineSearch />
     </Icon>
   );
 };
-
-export default SearchIcon;

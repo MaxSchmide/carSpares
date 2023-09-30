@@ -1,10 +1,10 @@
-import logo from '@/assets/logo.svg';
 import { Button } from '@/components/Button';
-import CatalogIcon from '@/styles/Icons/Catalog.icon';
-import SearchIcon from '@/styles/Icons/Search.icon';
+import { CatalogIcon, SearchIcon } from '@/styles/Icons';
+import { createQueryString } from '@/utils/createQueryString';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { FormEvent, MouseEvent, useEffect, useState } from 'react';
 import {
   AiOutlineHeart,
   AiOutlineShoppingCart,
@@ -24,35 +24,75 @@ import {
 } from './Header.styled';
 
 export const Header = () => {
+  const pathname = usePathname();
+  const router = useRouter();
   const [showCatalog, setShowCatalog] = useState(false);
+  const [query, setQuery] = useState('');
+  const [searchBy, setSearchBy] = useState('');
+
+  const handleSubmitSearch = (e: FormEvent) => {
+    e.preventDefault();
+
+    const params = createQueryString({ query, searchBy });
+
+    router.replace('/products' + params);
+  };
+
+  const handleShowCatalog = (e: MouseEvent) => {
+    e.stopPropagation();
+
+    setShowCatalog((prev) => !prev);
+  };
+
+  useEffect(() => {
+    setQuery('');
+    setSearchBy('');
+    setShowCatalog(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const hideCatalog = () => setShowCatalog(false);
+
+    window.addEventListener('click', hideCatalog);
+
+    return () => window.removeEventListener('click', hideCatalog);
+  }, []);
+
   return (
-    <header>
+    <header className="container">
       <Top>
         <Link href="/">
           <Image
             height={72}
-            src={logo}
+            width={100}
+            src={'/logo.svg'}
             alt="Car Spares"
           />
         </Link>
-        <Form>
+        <Form onSubmit={handleSubmitSearch}>
           <Input
             type="text"
             id="search"
             placeholder="Type name here..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
-          <Select defaultValue={0}>
+          <Select
+            value={searchBy}
+            onChange={(e) => setSearchBy(e.target.value)}
+          >
             <Option
-              value="0"
+              value=""
               disabled
             >
               Search By
             </Option>
+            <Option value="all">All</Option>
             <Option value="article">Article</Option>
             <Option value="name">Name</Option>
           </Select>
 
-          <Label htmlFor="search">
+          <Label>
             <SearchIcon />
           </Label>
         </Form>
@@ -63,7 +103,7 @@ export const Header = () => {
         </Buttons>
       </Top>
       <Bottom>
-        <CatalogButton onClick={() => setShowCatalog(!showCatalog)}>
+        <CatalogButton onClick={handleShowCatalog}>
           <CatalogIcon />
           <p>Catalog</p>
         </CatalogButton>

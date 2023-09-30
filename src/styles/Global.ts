@@ -19,6 +19,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background-color: #F8F8F8;
 }
 
 h1,
@@ -63,6 +64,7 @@ html:focus-within {
 /* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;
+  text-decoration: none;
 }
 
 /* Make images easier to work with */
@@ -97,7 +99,8 @@ select {
 }
 
 .container {
-  padding: 0 48px;
+  max-width:1200px;
+  margin: 0 auto;
 }
 
 .icon {

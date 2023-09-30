@@ -8,12 +8,10 @@ const Icon = styled.span`
   color: white;
 `;
 
-const CatalogIcon = () => {
+export const CatalogIcon = () => {
   return (
     <Icon>
       <AiOutlineUnorderedList />
     </Icon>
   );
 };
-
-export default CatalogIcon;
