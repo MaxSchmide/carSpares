@@ -1,6 +1,6 @@
-import StyledComponentsRegistry from '@/lib/styled';
 import { GlobalStyles, theme } from '@/styles';
 import { ThemeProvider } from 'styled-components';
+import StyledComponentsRegistry from './StyleSheetProvider';
 
 type Props = {
   children: React.ReactNode;

@@ -8,7 +8,7 @@ import { AiOutlineRight } from 'react-icons/ai';
 import { hasChildCategory } from '@/utils/hasChildCategory';
 import ErrorProvider from '@/providers/ErrorProvider';
 
-const Catalog = () => {
+export const Catalog = () => {
   const { isLoading, data, isError } = useGetCategoriesQuery();
   const [selected, setSelected] = useState<string>('');
 
@@ -66,5 +66,3 @@ const Catalog = () => {
     </Container>
   );
 };
-
-export default Catalog;

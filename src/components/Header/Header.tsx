@@ -5,12 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { FormEvent, MouseEvent, useEffect, useState } from 'react';
-import {
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-} from 'react-icons/ai';
-import Catalog from '../Catalog/Catalog';
+import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import {
   Bottom,
   Buttons,
@@ -18,10 +13,12 @@ import {
   Form,
   Input,
   Label,
+  Links,
   Option,
   Select,
   Top,
 } from './Header.styled';
+import { Catalog } from '../Catalog';
 
 export const Header = () => {
   const pathname = usePathname();
@@ -108,14 +105,32 @@ export const Header = () => {
           <p>Catalog</p>
         </CatalogButton>
         {showCatalog && <Catalog />}
-        <Buttons>
-          <Link href="/profile">
-            <AiOutlineUser className="icon" />
+        <Links>
+          <Link
+            href="/"
+            aria-label="Navigate user to home page"
+          >
+            Home
           </Link>
+          <Link
+            href="/products"
+            aria-label="Navigate user to page with all products"
+          >
+            Products
+          </Link>
+          <Link
+            href="/categories"
+            aria-label="Navigate user to page with all categories"
+          >
+            Categories
+          </Link>
+        </Links>
+        <Buttons>
           <Link
             href="/favourites"
             data-count={2}
             className="nav-icon"
+            aria-label="Link to favourites page"
           >
             <AiOutlineHeart className="icon " />
           </Link>
@@ -123,6 +138,7 @@ export const Header = () => {
             href="/cart"
             className="nav-icon"
             data-count={0}
+            aria-label="Link to cart page"
           >
             <AiOutlineShoppingCart className="icon " />
           </Link>

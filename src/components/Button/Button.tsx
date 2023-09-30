@@ -1,6 +1,6 @@
 import React from 'react';
-import { MyButton } from './Button.styled';
 import { ButtonProps } from '@/types/button';
+import { MyButton } from './Button.styled';
 
 export const Button = ({ variant, children, ...rest }: ButtonProps) => {
   return (

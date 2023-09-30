@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { theme } from './Theme';
 
 export const GlobalStyles = createGlobalStyle`
@@ -139,4 +139,8 @@ select {
 .menu-icon {
   transition: transform .2s ease-in-out;
 }
+`;
+
+export const PageContainer = styled.div`
+  padding: 20px 0;
 `;

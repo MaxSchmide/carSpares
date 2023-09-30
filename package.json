@@ -11,26 +11,24 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.6",
-    "@types/node": "20.6.0",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
     "axios": "^1.5.0",
-    "eslint": "^8.0.1",
-    "eslint-config-next": "13.4.19",
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.1",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
-    "react-redux": "^8.1.2",
-    "styled-components": "^6.0.7",
-    "typescript": "*"
+    "react-redux": "^8.1.2"
   },
   "devDependencies": {
+    "@types/node": "20.6.0",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.7.0",
     "babel-plugin-styled-components": "^2.1.4",
+    "eslint": "^8.0.1",
+    "eslint-config-next": "13.4.19",
     "eslint-config-standard-with-typescript": "^39.0.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
@@ -38,7 +36,9 @@
     "eslint-plugin-react": "^7.33.2",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "styled-components": "^6.0.7",
+    "typescript": "*"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [

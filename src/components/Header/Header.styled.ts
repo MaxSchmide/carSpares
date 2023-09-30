@@ -37,6 +37,21 @@ export const CatalogButton = styled.div`
   }
 `;
 
+export const Links = styled.nav`
+  display: flex;
+  gap: 16px;
+
+  a {
+    font-size: 18px;
+    color: ${theme.colors.primary};
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: ${theme.colors.secondary};
+    }
+  }
+`;
+
 export const Form = styled.form`
   position: relative;
 `;
