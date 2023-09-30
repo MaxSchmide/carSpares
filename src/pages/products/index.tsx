@@ -1,10 +1,15 @@
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { Card } from '@/components/Card';
+import { useQuery } from '@/hooks';
+import ErrorProvider from '@/providers/ErrorProvider';
+import LoadingProvider from '@/providers/LoadingProvider';
 import { Grid, PageContainer } from '@/styles';
-import { useRouter } from 'next/router';
+import { IProductCard } from '@/types/product';
+// import { useRouter } from 'next/router';
 
 const Search = () => {
-  const { query } = useRouter();
+  // const { query } = useRouter();
+  const { data, isLoading, isError } = useQuery<IProductCard[]>('/products');
   const links = [
     {
       url: '/products',
@@ -13,15 +18,24 @@ const Search = () => {
   ];
   return (
     <section className="container">
-      <PageContainer>
-        <Breadcrumb links={links} />
-        <Grid>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </Grid>
-      </PageContainer>
+      <LoadingProvider
+        isLoading={isLoading}
+        size={48}
+      >
+        <ErrorProvider isError={isError}>
+          <PageContainer>
+            <Breadcrumb links={links} />
+            <Grid>
+              {data?.map((product) => (
+                <Card
+                  product={product}
+                  key={product._id}
+                />
+              ))}
+            </Grid>
+          </PageContainer>
+        </ErrorProvider>
+      </LoadingProvider>
     </section>
   );
 };

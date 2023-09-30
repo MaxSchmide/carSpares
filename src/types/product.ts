@@ -15,3 +15,10 @@ export interface IProduct {
   properties: Object;
   [key: string]: any;
 }
+
+export interface IProductCard {
+  _id: string;
+  title: string;
+  price: number;
+  image: string;
+}

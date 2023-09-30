@@ -11,30 +11,30 @@ import Image from 'next/image';
 import { Button } from '../Button';
 import Link from 'next/link';
 import { FavouriteIcon } from '@/styles/Icons';
+import { IProductCard } from '@/types/product';
 
-export const Card = () => {
+type Props = {
+  product: IProductCard;
+};
+
+export const Card = ({ product }: Props) => {
   return (
     <Article>
       <ImageContainer>
         <Image
           fill
-          src="https://car-spares.s3.eu-north-1.amazonaws.com/1684388949865.jpg"
+          src={product.image}
           alt=""
         />
         <Icon>
           <FavouriteIcon />
         </Icon>
       </ImageContainer>
-      <Link href={'/products/' + '1'}>
-        <Title>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-          perspiciatis porro maxime nam ducimus impedit voluptatem
-          exercitationem, voluptas explicabo commodi quam quod autem ullam.
-          Provident consequatur minus amet tempore.
-        </Title>
+      <Link href={'/products/' + product._id}>
+        <Title>{product.title}</Title>
       </Link>
       <Flex>
-        <Price>799</Price>
+        <Price>{product.price}</Price>
         <Button variant="secondary">Add to Cart</Button>
       </Flex>
     </Article>

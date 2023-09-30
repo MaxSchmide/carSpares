@@ -23,6 +23,7 @@ export const Title = styled.h4`
   font-style: normal;
   font-weight: 600;
   line-height: 21px;
+  height: 42px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
