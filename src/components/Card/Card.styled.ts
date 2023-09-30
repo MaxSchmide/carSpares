@@ -38,7 +38,7 @@ export const Title = styled.h4`
 `;
 
 export const Price = styled.p`
-  font-size: 26px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 800;
   line-height: 140%;
