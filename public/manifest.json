@@ -1,0 +1,14 @@
+{
+  "name": "Car Spares Online Auto Shop",
+  "short_name": "CarSpares",
+  "description": "An Online auto shop with car parts",
+  "start_url": "/",
+  "theme_color": "#f8f8f8",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
