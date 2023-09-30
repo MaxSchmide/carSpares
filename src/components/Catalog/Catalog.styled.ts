@@ -8,6 +8,7 @@ export const Container = styled.div`
   left: 0px;
   width: 200px;
   border: 1px solid ${theme.colors.secondaryShade};
+  z-index: 100;
 `;
 
 export const Ul = styled.ul`
