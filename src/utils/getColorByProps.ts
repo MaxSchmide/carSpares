@@ -1,7 +1,7 @@
 import { theme } from '@/styles';
 
 export const getColorByProps = (props: any) => {
-  switch (props.variant) {
+  switch (props.$variant) {
     case 'primary':
       return theme.colors.primary;
     case 'secondary':

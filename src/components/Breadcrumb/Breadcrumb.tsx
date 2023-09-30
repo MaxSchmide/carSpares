@@ -13,13 +13,21 @@ type Props = {
 export const Breadcrumb = ({ links }: Props) => {
   return (
     <Breadcrumbs>
-      <Link href="/">
+      <Link
+        href="/"
+        aria-label="Home"
+      >
         <AiOutlineHome className="icon" />
       </Link>
       {links?.map((link) => (
         <React.Fragment key={link.label}>
           <AiOutlineRight />
-          <Link href={link.url}>{link.label}</Link>
+          <Link
+            href={link.url}
+            aria-label={link.label}
+          >
+            {link.label}
+          </Link>
         </React.Fragment>
       ))}
     </Breadcrumbs>

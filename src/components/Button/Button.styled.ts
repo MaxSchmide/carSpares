@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 export const MyButton = styled.button<ButtonProps>`
   background-color: ${(props) => getColorByProps(props)};
-  color: ${(props) => (props.variant ? 'white' : theme.colors.primary)};
+  color: ${(props) => (props.$variant ? 'white' : theme.colors.primary)};
   padding: 10px 20px;
   border-radius: 999px;
   font-weight: 500;
@@ -17,7 +17,7 @@ export const MyButton = styled.button<ButtonProps>`
 
   &:hover {
     background-color: ${(props) => {
-      switch (props.variant) {
+      switch (props.$variant) {
         case 'primary':
           return theme.colors.tertiary;
         case 'secondary':

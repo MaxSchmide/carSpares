@@ -19,8 +19,10 @@ import {
   Top,
 } from './Header.styled';
 import { Catalog } from '../Catalog';
+import { useAppSelector } from '@/redux';
 
 export const Header = () => {
+  const { items } = useAppSelector((state) => state.favourites);
   const pathname = usePathname();
   const router = useRouter();
   const [showCatalog, setShowCatalog] = useState(false);
@@ -77,6 +79,7 @@ export const Header = () => {
           <Select
             value={searchBy}
             onChange={(e) => setSearchBy(e.target.value)}
+            aria-label="search by"
           >
             <Option
               value=""
@@ -89,14 +92,14 @@ export const Header = () => {
             <Option value="name">Name</Option>
           </Select>
 
-          <Label>
+          <Label aria-label="search">
             <SearchIcon />
           </Label>
         </Form>
 
         <Buttons>
           <Button>Log in</Button>
-          <Button variant="secondary">Sign Up</Button>
+          <Button $variant="secondary">Sign Up</Button>
         </Buttons>
       </Top>
       <Bottom>
@@ -128,7 +131,7 @@ export const Header = () => {
         <Buttons>
           <Link
             href="/favourites"
-            data-count={2}
+            data-count={items.length}
             className="nav-icon"
             aria-label="Link to favourites page"
           >

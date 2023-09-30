@@ -1,9 +1,13 @@
 import React from 'react';
-import { AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import styled from 'styled-components';
 import { theme } from '../Theme';
 
-const Icon = styled.div`
+type Props = {
+  $active?: boolean;
+};
+
+const Icon = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,16 +19,25 @@ const Icon = styled.div`
   transition:
     color 0.2s ease-in-out,
     background-color 0.2s ease-in-out;
+
+  ${(props) => {
+    if (props.$active) {
+      return `
+        background-color: ${theme.colors.secondaryShade}3f;
+        color: ${theme.colors.secondary};
+      `;
+    }
+  }}
   &:hover {
     background-color: ${theme.colors.secondaryShade}3f;
     color: ${theme.colors.secondary};
   }
 `;
 
-export const FavouriteIcon = () => {
+export const FavouriteIcon = ({ $active }: Props) => {
   return (
-    <Icon>
-      <AiFillHeart />
+    <Icon $active={$active}>
+      {$active ? <AiFillHeart /> : <AiOutlineHeart />}
     </Icon>
   );
 };
