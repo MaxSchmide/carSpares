@@ -4,10 +4,10 @@ import {
   Flex,
   Icon,
   ImageContainer,
+  MyImage,
   Price,
   Title,
 } from './Card.styled';
-import Image from 'next/image';
 import { Button } from '../Button';
 import Link from 'next/link';
 import { FavouriteIcon } from '@/styles/Icons';
@@ -21,7 +21,7 @@ export const Card = ({ product }: Props) => {
   return (
     <Article>
       <ImageContainer>
-        <Image
+        <MyImage
           fill
           src={product.image}
           alt=""

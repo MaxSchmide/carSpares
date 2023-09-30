@@ -1,5 +1,6 @@
 import { theme } from '@/styles';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export const Article = styled.article`
   grid-column: span 6;
@@ -16,6 +17,10 @@ export const ImageContainer = styled.div`
   position: relative;
   height: 240px;
   margin-bottom: 24px;
+`;
+
+export const MyImage = styled(Image)`
+  object-fit: contain;
 `;
 
 export const Title = styled.h4`
