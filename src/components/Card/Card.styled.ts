@@ -64,3 +64,8 @@ export const Icon = styled.div`
   right: 0;
   z-index: 10;
 `;
+
+export const P = styled.p`
+  margin-bottom: 8px;
+  font-size: 14px;
+`;

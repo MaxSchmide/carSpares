@@ -5,17 +5,21 @@ import ErrorProvider from '@/providers/ErrorProvider';
 import LoadingProvider from '@/providers/LoadingProvider';
 import { Grid, PageContainer } from '@/styles';
 import { IProductCard } from '@/types/product';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
-const Search = () => {
-  // const { query } = useRouter();
-  const { data, isLoading, isError } = useQuery<IProductCard[]>('/products');
+const Products = () => {
+  const { query } = useRouter();
+  const { data, isLoading, isError } = useQuery<IProductCard[]>(
+    '/products',
+    query,
+  );
   const links = [
     {
       url: '/products',
       label: 'Products',
     },
   ];
+
   return (
     <section className="container">
       <LoadingProvider
@@ -40,4 +44,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Products;

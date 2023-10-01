@@ -5,6 +5,7 @@ import {
   Icon,
   ImageContainer,
   MyImage,
+  P,
   Price,
   Title,
 } from './Card.styled';
@@ -41,6 +42,7 @@ export const Card = ({ product }: Props) => {
           />
         </Icon>
       </ImageContainer>
+      <P>{product.article}</P>
       <Link href={'/products/' + product._id}>
         <Title>{product.title}</Title>
       </Link>

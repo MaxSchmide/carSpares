@@ -1,7 +1,8 @@
 import { fetchClient } from '@/services';
-import { useCallback, useEffect, useState } from 'react';
+import { QueryParams } from '@/types/query';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-export const useQuery = <T>(url: string) => {
+export const useQuery = <T>(url: string, params?: QueryParams) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState<T | undefined>(undefined);
@@ -10,7 +11,7 @@ export const useQuery = <T>(url: string) => {
     async (signal: AbortSignal) => {
       try {
         const fetched = await fetchClient
-          .get(url, { signal })
+          .get(url, { signal, params })
           .then((res) => res.data);
         setData(fetched);
       } catch (error) {
@@ -19,7 +20,7 @@ export const useQuery = <T>(url: string) => {
         setIsLoading(false);
       }
     },
-    [url],
+    [url, params],
   );
 
   useEffect(() => {
@@ -29,9 +30,14 @@ export const useQuery = <T>(url: string) => {
     return () => controller.abort();
   }, [fetchData]);
 
-  return {
-    isLoading,
-    data,
-    isError,
-  };
+  const result = useMemo(
+    () => ({
+      isLoading,
+      data,
+      isError,
+    }),
+    [isLoading, data, isError],
+  );
+
+  return result;
 };

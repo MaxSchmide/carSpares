@@ -88,7 +88,6 @@ export const Header = () => {
             >
               Search By
             </Option>
-            <Option value="all">All</Option>
             <Option value="article">Article</Option>
             <Option value="name">Name</Option>
           </Select>

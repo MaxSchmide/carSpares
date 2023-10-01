@@ -22,15 +22,32 @@ export default async function handler(
             });
           }
         } else {
-          const all = await Product.find({}, 'title images price').populate(
-            'category',
-          );
+          const searchBy = String(query.searchBy);
+          const search = query.query || '';
+
+          const searchOptions: {
+            title?: any;
+            article?: any;
+            images?: any;
+          } = {};
+
+          switch (searchBy) {
+            case 'article':
+              searchOptions.article = { $regex: search, $options: 'i' };
+            default:
+              searchOptions.title = { $regex: search, $options: 'i' };
+          }
+
+          const all = await Product.find(searchOptions).lean();
+
           const products = all.map((pr) => ({
             _id: pr._id,
             title: pr.title,
             price: pr.price,
+            article: pr.article,
             image: pr.images[0],
           }));
+
           res.status(200).json(products);
         }
         break;
