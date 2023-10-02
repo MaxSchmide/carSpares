@@ -18,7 +18,7 @@ export const Breadcrumb = ({ links }: Props) => {
         <AiOutlineHome className="icon" />
       </Link>
       {links?.map((link) => (
-        <React.Fragment key={link.label}>
+        <React.Fragment key={link.url}>
           <AiOutlineRight />
           <Link
             href={link.url}

@@ -6,6 +6,7 @@ import { Grid, PageContainer } from '@/styles';
 import { ILink } from '@/types/link';
 import { IProductCard } from '@/types/product';
 import { convertToJson } from '@/utils/convertToJson';
+import { getDescendantCategories } from '@/utils/getDescendantCategories';
 import { GetServerSideProps } from 'next';
 
 type Props = {
@@ -54,8 +55,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const category = await Category.findById({ _id: id }, 'label');
 
+  const descendantsCategories = await getDescendantCategories(category?._id);
+
   const result = await Product.find(
-    { category: category?._id },
+    {
+      category: { $in: descendantsCategories },
+    },
     'title article images price',
   );
   const products = convertToJson(
