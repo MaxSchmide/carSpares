@@ -1,46 +1,55 @@
 import { Breadcrumb } from '@/components/Breadcrumb';
-import { useQuery } from '@/hooks';
-import ErrorProvider from '@/providers/ErrorProvider';
-import LoadingProvider from '@/providers/LoadingProvider';
+import { mongooseConnect } from '@/lib/mongoose';
+import { Product } from '@/models/product.model';
 import { PageContainer } from '@/styles';
 import { IProduct } from '@/types/product';
-import { useRouter } from 'next/router';
-import { useMemo } from 'react';
+import { convertToJson } from '@/utils/convertToJson';
+import { GetServerSideProps } from 'next';
 
-const ProductPage = () => {
-  const { query } = useRouter();
-  const { data, isLoading, isError } = useQuery<IProduct>(
-    '/products?id=' + query.id,
-  );
+type Props = {
+  product: IProduct;
+};
 
-  const links = useMemo(
-    () => [
-      {
-        url: '/products',
-        label: 'Products',
-      },
-      {
-        label: data?.title || '',
-        url: '/products/' + data?._id || '',
-      },
-    ],
-    [data],
-  );
+const ProductPage = ({ product }: Props) => {
+  const links = [
+    {
+      url: '/products',
+      label: 'Products',
+    },
+    {
+      label: product?.title || '',
+      url: '/products/' + product?._id || '',
+    },
+  ];
+
   return (
     <section className="container">
       <PageContainer>
-        <LoadingProvider
-          isLoading={isLoading}
-          size={48}
-        >
-          <ErrorProvider isError={isError}>
-            <Breadcrumb links={links} />
-            <h4>{data?.description}</h4>
-          </ErrorProvider>
-        </LoadingProvider>
+        <Breadcrumb links={links} />
+        <h4>{product?.description}</h4>
       </PageContainer>
     </section>
   );
 };
 
 export default ProductPage;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { id } = ctx.query;
+
+  if (id === 'favicon.svg' || id === 'manifest.json') {
+    return {
+      props: {},
+    };
+  }
+
+  await mongooseConnect();
+
+  const product = await Product.findById(id).populate('category');
+
+  return {
+    props: {
+      product: convertToJson(product),
+    },
+  };
+};
