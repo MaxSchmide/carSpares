@@ -1,11 +1,16 @@
 import { Button } from '@/components/Button';
+import { useAppSelector } from '@/redux';
+import { headerSelect } from '@/styles';
 import { CatalogIcon, SearchIcon } from '@/styles/Icons';
+import { SelectOption } from '@/types/select';
 import { createQueryString } from '@/utils/createQueryString';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { FormEvent, MouseEvent, useEffect, useState } from 'react';
 import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
+import ReactSelect from 'react-select';
+import { Catalog } from '../Catalog';
 import {
   Bottom,
   Buttons,
@@ -14,12 +19,8 @@ import {
   Input,
   Label,
   Links,
-  Option,
-  Select,
   Top,
 } from './Header.styled';
-import { Catalog } from '../Catalog';
-import { useAppSelector } from '@/redux';
 
 export const Header = () => {
   const { items } = useAppSelector((state) => state.favourites);
@@ -27,12 +28,23 @@ export const Header = () => {
   const router = useRouter();
   const [showCatalog, setShowCatalog] = useState(false);
   const [query, setQuery] = useState('');
-  const [searchBy, setSearchBy] = useState('');
+  const [searchBy, setSearchBy] = useState<SelectOption | null>(null);
+  const instanceId = new Date().getDay().toString();
+  const selectOptions = [
+    {
+      value: 'name',
+      label: 'Name',
+    },
+    {
+      label: 'Article',
+      value: 'article',
+    },
+  ];
 
   const handleSubmitSearch = (e: FormEvent) => {
     e.preventDefault();
 
-    const params = createQueryString({ query, searchBy });
+    const params = createQueryString({ query, searchBy: searchBy!.value });
 
     router.replace('/products' + params);
   };
@@ -45,7 +57,7 @@ export const Header = () => {
 
   useEffect(() => {
     setQuery('');
-    setSearchBy('');
+    setSearchBy(null);
     setShowCatalog(false);
   }, [pathname]);
 
@@ -77,20 +89,14 @@ export const Header = () => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <Select
+          <ReactSelect
+            instanceId={instanceId}
+            onChange={(e) => setSearchBy(e)}
             value={searchBy}
-            onChange={(e) => setSearchBy(e.target.value)}
-            aria-label="search by"
-          >
-            <Option
-              value=""
-              disabled
-            >
-              Search By
-            </Option>
-            <Option value="article">Article</Option>
-            <Option value="name">Name</Option>
-          </Select>
+            options={selectOptions}
+            styles={headerSelect}
+            placeholder={'Search By'}
+          />
 
           <Label aria-label="search">
             <SearchIcon />

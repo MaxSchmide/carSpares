@@ -2,12 +2,10 @@ import Link from 'next/link';
 import React from 'react';
 import { AiOutlineHome, AiOutlineRight } from 'react-icons/ai';
 import { Breadcrumbs } from './Breadcrumb.styled';
+import { ILink } from '@/types/link';
 
 type Props = {
-  links?: {
-    label: string;
-    url: string;
-  }[];
+  links?: ILink[];
 };
 
 export const Breadcrumb = ({ links }: Props) => {

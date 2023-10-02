@@ -54,6 +54,7 @@ export const Links = styled.nav`
 
 export const Form = styled.form`
   position: relative;
+  z-index: 10;
 `;
 
 export const Input = styled.input`

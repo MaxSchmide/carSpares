@@ -38,7 +38,7 @@ export const ListItem = styled.li`
   }
 `;
 
-export const Submenu = styled.div`
+export const Submenu = styled.ul`
   display: none;
   position: absolute;
   top: -1px;

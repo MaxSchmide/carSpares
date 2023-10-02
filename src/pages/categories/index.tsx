@@ -1,22 +1,27 @@
 import { Category } from '@/models/category.model';
-import { useGetCategoriesQuery } from '@/redux';
 import { Grid, PageContainer } from '@/styles';
+import { ICategory } from '@/types/category';
 import { convertToJson } from '@/utils/convertToJson';
+import Link from 'next/link';
 import React from 'react';
 
-const CategoriesPage = ({ categories }: any) => {
-  const { data } = useGetCategoriesQuery();
+type Props = {
+  categories: ICategory[];
+};
+
+const CategoriesPage = ({ categories }: Props) => {
   return (
     <section className="container">
       <PageContainer>
         <Grid>
-          {data?.map((category) => (
-            <p
+          {categories.map((category) => (
+            <Link
+              href={'/categories/' + category._id}
               key={category._id}
               style={{ gridColumn: 'span 6' }}
             >
               {category.label}
-            </p>
+            </Link>
           ))}
         </Grid>
       </PageContainer>

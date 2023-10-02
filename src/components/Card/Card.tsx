@@ -25,6 +25,7 @@ export const Card = ({ product }: Props) => {
   const handleToggleFavourite = (product: IProductCard) => {
     dispatch(toggleFavouriteItem(product));
   };
+  const isFavourite = items.some((item) => item._id === product._id);
 
   return (
     <Article>
@@ -37,9 +38,7 @@ export const Card = ({ product }: Props) => {
           priority
         />
         <Icon onClick={() => handleToggleFavourite(product)}>
-          <FavouriteIcon
-            $active={items.some((item) => item._id === product._id)}
-          />
+          <FavouriteIcon $active={isFavourite} />
         </Icon>
       </ImageContainer>
       <P>{product.article}</P>

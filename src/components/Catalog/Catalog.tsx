@@ -1,4 +1,3 @@
-import { useGetCategoriesQuery } from '@/redux';
 import { getChildCategories } from '@/utils/getVisibleCategories';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
@@ -7,9 +6,11 @@ import LoadingProvider from '@/providers/LoadingProvider';
 import { AiOutlineRight } from 'react-icons/ai';
 import { hasChildCategory } from '@/utils/hasChildCategory';
 import ErrorProvider from '@/providers/ErrorProvider';
+import { useQuery } from '@/hooks';
+import { ICategory } from '@/types/category';
 
 export const Catalog = () => {
-  const { isLoading, data, isError } = useGetCategoriesQuery();
+  const { isLoading, data, isError } = useQuery<ICategory[]>('/categories');
   const [selected, setSelected] = useState<string>('');
 
   const parentCategories = useMemo(
@@ -17,7 +18,10 @@ export const Catalog = () => {
     [data],
   );
 
-  const childCategories = getChildCategories(data, selected);
+  const childCategories = useMemo(
+    () => getChildCategories(data, selected),
+    [selected, data],
+  );
 
   return (
     <Container>

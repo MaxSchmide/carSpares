@@ -26,16 +26,16 @@ export default async function handler(
           const search = query.query || '';
 
           const searchOptions: {
-            title?: any;
-            article?: any;
-            images?: any;
+            [key: string]: { $regex: string | string[]; $options: string };
           } = {};
 
           switch (searchBy) {
             case 'article':
               searchOptions.article = { $regex: search, $options: 'i' };
+              break;
             default:
               searchOptions.title = { $regex: search, $options: 'i' };
+              break;
           }
 
           const all = await Product.find(searchOptions).lean();
