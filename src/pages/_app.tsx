@@ -24,13 +24,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <StoreProvider>
-      <StylesProvider>
-        {isLoading && <PageLoader />}
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </StylesProvider>
-    </StoreProvider>
+    <>
+      {isLoading && <PageLoader />}
+      <StoreProvider>
+        <StylesProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </StylesProvider>
+      </StoreProvider>
+    </>
   );
 }
