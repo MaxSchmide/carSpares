@@ -1,5 +1,3 @@
-import { PageContainer } from '@/styles';
-import { H1, H3, SlideContainer, SwiperContainer } from './index.styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Category } from '@/models/category.model';
 import { convertToJson } from '@/utils/convertToJson';
@@ -8,6 +6,8 @@ import Image from 'next/image';
 import 'swiper/css';
 import Link from 'next/link';
 import { Autoplay } from 'swiper/modules';
+import { PageContainer } from '@/styles';
+import { H1, H3, SlideContainer, SwiperContainer } from '@/styles/Homepage';
 
 type Props = {
   categories: ICategory[];
