@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Autoplay } from 'swiper/modules';
 import { PageContainer } from '@/styles';
 import { H1, H3, SlideContainer, SwiperContainer } from '@/styles/Homepage';
+import { GetServerSideProps } from 'next';
 
 type Props = {
   categories: ICategory[];
@@ -53,7 +54,7 @@ const Home = ({ categories }: Props) => {
 
 export default Home;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const all = await Category.find();
 
   const categories = convertToJson(all.filter((cat) => cat.image?.src));
