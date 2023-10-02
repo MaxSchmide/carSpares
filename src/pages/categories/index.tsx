@@ -1,3 +1,4 @@
+import { mongooseConnect } from '@/lib/mongoose';
 import { Category } from '@/models/category.model';
 import { Grid, PageContainer } from '@/styles';
 import { ICategory } from '@/types/category';
@@ -32,7 +33,8 @@ const CategoriesPage = ({ categories }: Props) => {
 export default CategoriesPage;
 
 export const getServerSideProps = async () => {
-  const categories = convertToJson(await Category.find());
+  await mongooseConnect();
+  const categories = convertToJson(await Category.find().exec());
   return {
     props: {
       categories,

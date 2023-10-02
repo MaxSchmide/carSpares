@@ -1,7 +1,15 @@
+import { mongooseConnect } from '@/lib/mongoose';
+import { Category } from '@/models/category.model';
 import { PageContainer } from '@/styles';
-import { H1 } from '@/styles/Homepage';
+import { H1, H3, SlideContainer, SwiperContainer } from '@/styles/Homepage';
 import { ICategory } from '@/types/category';
+import { convertToJson } from '@/utils/convertToJson';
+import { GetServerSideProps } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import 'swiper/css';
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 type Props = {
   categories: ICategory[];
@@ -12,7 +20,7 @@ const Home = ({ categories }: Props) => {
     <section className="container">
       <PageContainer>
         <H1>Showcase your love to car with CarSpares</H1>
-        {/* <SwiperContainer>
+        <SwiperContainer>
           <Swiper
             spaceBetween={40}
             loop
@@ -39,7 +47,7 @@ const Home = ({ categories }: Props) => {
               </SwiperSlide>
             ))}
           </Swiper>
-        </SwiperContainer> */}
+        </SwiperContainer>
       </PageContainer>
     </section>
   );
@@ -47,14 +55,15 @@ const Home = ({ categories }: Props) => {
 
 export default Home;
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const all = await Category.find();
+export const getServerSideProps: GetServerSideProps = async () => {
+  await mongooseConnect();
+  const all = await Category.find().exec();
 
-//   const categories = convertToJson(all.filter((cat) => cat.image?.src));
+  const categories = convertToJson(all.filter((cat) => cat.image?.src));
 
-//   return {
-//     props: {
-//       categories,
-//     },
-//   };
-// };
+  return {
+    props: {
+      categories,
+    },
+  };
+};

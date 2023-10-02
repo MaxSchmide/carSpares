@@ -1,5 +1,6 @@
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { Card } from '@/components/Card';
+import { mongooseConnect } from '@/lib/mongoose';
 import { Category } from '@/models/category.model';
 import { Product } from '@/models/product.model';
 import { Grid, PageContainer } from '@/styles';
@@ -45,6 +46,7 @@ const CategoryPage = ({ products, categoryName }: Props) => {
 export default CategoryPage;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  await mongooseConnect();
   const { id } = ctx.query;
 
   if (id === 'favicon.svg' || id === 'manifest.json') {
