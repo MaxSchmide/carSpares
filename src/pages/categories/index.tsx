@@ -2,7 +2,7 @@ import { mongooseConnect } from '@/lib/mongoose';
 import { Category } from '@/models/category.model';
 import { Grid, PageContainer } from '@/styles';
 import { ICategory } from '@/types/category';
-import { convertToJson } from '@/utils/convertToJson';
+import { convertToJson } from '@/utils/helpers';
 import Link from 'next/link';
 import React from 'react';
 

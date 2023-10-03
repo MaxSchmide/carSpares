@@ -1,5 +1,3 @@
-'use client';
-
 import { IProductCard } from '@/types/product';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 

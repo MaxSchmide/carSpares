@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Icon = styled.span`
   display: flex;
-  font-size: 32px;
+  font-size: 2.4rem;
   color: white;
 `;
 

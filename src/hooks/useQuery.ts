@@ -1,5 +1,5 @@
-import { fetchClient } from '@/services';
 import { QueryParams } from '@/types/query';
+import { fetchClient } from '@/utils/client';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export const useQuery = <T>(url: string, params?: QueryParams) => {

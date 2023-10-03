@@ -12,7 +12,7 @@ export const headerSelect: StylesConfig<
     top: '50%',
     right: '52px',
     transform: 'translateY(-50%)',
-    width: '150px',
+    width: '15rem',
     borderRight: `2px solid ${theme.colors.inputBorder}`,
     borderLeft: `2px solid ${theme.colors.inputBorder}`,
   }),
@@ -21,6 +21,7 @@ export const headerSelect: StylesConfig<
     background: 'transparent',
     border: 'none',
     boxShadow: 'none',
+    minHeight: '3.2rem',
   }),
   singleValue: (styles) => ({
     ...styles,
@@ -32,6 +33,16 @@ export const headerSelect: StylesConfig<
     ':hover': {
       color: theme.colors.secondary,
     },
+    '@media (min-width: 640px) and (max-width: 1024px)': {
+      padding: 0,
+    },
+  }),
+  placeholder: (styles) => ({
+    ...styles,
+    fontSize: '1.6rem',
+    '@media (min-width: 640px) and (max-width: 1024px)': {
+      fontSize: '2rem',
+    },
   }),
   option: (styles, { isFocused, isSelected }) => ({
     ...styles,
@@ -41,5 +52,6 @@ export const headerSelect: StylesConfig<
       ? theme.colors.secondaryShade + '3f'
       : 'transparent',
     color: isSelected ? 'white' : theme.colors.primary,
+    fontSize: '1.4rem',
   }),
 };

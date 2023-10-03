@@ -1,13 +1,12 @@
-import { getChildCategories } from '@/utils/getVisibleCategories';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { Container, ListItem, Submenu, Ul } from './Catalog.styled';
 import LoadingProvider from '@/providers/LoadingProvider';
 import { AiOutlineRight } from 'react-icons/ai';
-import { hasChildCategory } from '@/utils/hasChildCategory';
 import ErrorProvider from '@/providers/ErrorProvider';
 import { useQuery } from '@/hooks';
 import { ICategory } from '@/types/category';
+import { getChildCategories, hasChildCategory } from '@/utils/helpers';
 
 export const Catalog = () => {
   const { isLoading, data, isError } = useQuery<ICategory[]>('/categories');
@@ -18,10 +17,7 @@ export const Catalog = () => {
     [data],
   );
 
-  const childCategories = useMemo(
-    () => getChildCategories(data, selected),
-    [selected, data],
-  );
+  const childCategories = getChildCategories(data, selected);
 
   return (
     <Container>

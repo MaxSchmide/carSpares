@@ -6,8 +6,7 @@ import { Product } from '@/models/product.model';
 import { Grid, PageContainer } from '@/styles';
 import { ILink } from '@/types/link';
 import { IProductCard } from '@/types/product';
-import { convertToJson } from '@/utils/convertToJson';
-import { getDescendantCategories } from '@/utils/getDescendantCategories';
+import { convertToJson, getDescendantCategories } from '@/utils/helpers';
 import { GetServerSideProps } from 'next';
 
 type Props = {

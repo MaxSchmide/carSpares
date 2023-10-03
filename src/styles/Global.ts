@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { theme } from './Theme';
+import { device } from './BreakPoints';
 
 export const GlobalStyles = createGlobalStyle`
 /* Box sizing rules */
@@ -10,10 +11,18 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 html {
-  font-size: 100%;
+  font-size: 62.5%;
   font-family: "Mont", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+
+  @media ${device.tablet} {
+    font-size: 50%;
+  }
+
+  @media ${device.mobile} {
+    font-size: 100%;
+  }
 }
 
 body {
@@ -105,9 +114,12 @@ select {
 
 .icon {
   color: ${theme.colors.primary};
-  font-size: 32px;
+  font-size: 3.2rem;
   cursor: pointer;
   transition: color .2s ease-in-out;
+
+  @media ${device.tablet} {
+  }
 }
 
 .icon:hover {
@@ -127,9 +139,13 @@ select {
   right: -8px;
   background-color: ${theme.colors.secondary};
   color: white;
-  font-size: 14px;
-  padding: 0 6px;
+  font-size: 1.4rem;
+  padding: 0 0.6rem;
   border-radius: 999px;
+  @media ${device.tablet} {
+    top: -6px;
+    right: -6px;
+  }
 }
 
 .category-link{

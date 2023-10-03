@@ -3,7 +3,6 @@ import { useAppSelector } from '@/redux';
 import { headerSelect } from '@/styles';
 import { CatalogIcon, SearchIcon } from '@/styles/Icons';
 import { SelectOption } from '@/types/select';
-import { createQueryString } from '@/utils/createQueryString';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -19,8 +18,10 @@ import {
   Input,
   Label,
   Links,
+  MyLink,
   Top,
 } from './Header.styled';
+import { createQueryString } from '@/utils/helpers';
 
 export const Header = () => {
   const { items } = useAppSelector((state) => state.favourites);
@@ -72,15 +73,14 @@ export const Header = () => {
   return (
     <header className="container">
       <Top>
-        <Link href="/">
+        <MyLink href="/">
           <Image
-            height={72}
-            width={100}
             src={'/logo.svg'}
             alt="Car Spares"
+            fill
             priority
           />
-        </Link>
+        </MyLink>
         <Form onSubmit={handleSubmitSearch}>
           <Input
             type="text"

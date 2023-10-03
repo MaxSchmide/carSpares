@@ -4,7 +4,7 @@ import { mongooseConnect } from '@/lib/mongoose';
 import { Product } from '@/models/product.model';
 import { Grid, PageContainer } from '@/styles';
 import { IProductCard } from '@/types/product';
-import { convertToJson } from '@/utils/convertToJson';
+import { convertToJson } from '@/utils/helpers';
 import { GetServerSideProps } from 'next';
 
 type Props = {

@@ -1,15 +1,16 @@
-/* eslint-disable indent */
 import { theme } from '@/styles';
 import { ButtonProps } from '@/types/button';
-import { getColorByProps } from '@/utils/getColorByProps';
+import { getColorByProps } from '@/utils/helpers';
 import styled from 'styled-components';
 
 export const MyButton = styled.button<ButtonProps>`
   background-color: ${(props) => getColorByProps(props)};
   color: ${(props) => (props.$variant ? 'white' : theme.colors.primary)};
-  padding: 10px 20px;
+  padding: 1rem 2rem;
   border-radius: 999px;
   font-weight: 500;
+  font-size: 1.6rem;
+  white-space: nowrap;
   transition:
     background-color 0.2s ease,
     box-shadow 0.2s ease,

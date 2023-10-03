@@ -3,7 +3,7 @@ import { mongooseConnect } from '@/lib/mongoose';
 import { Product } from '@/models/product.model';
 import { PageContainer } from '@/styles';
 import { IProduct } from '@/types/product';
-import { convertToJson } from '@/utils/convertToJson';
+import { convertToJson } from '@/utils/helpers';
 import { GetServerSideProps } from 'next';
 
 type Props = {
