@@ -1,10 +1,10 @@
+import PageLoader from '@/components/PageLoader/PageLoader';
+import StoreProvider from '@/providers/StoreProvider';
 import StylesProvider from '@/providers/StylesProvider';
 import type { AppProps } from 'next/app';
-import Layout from './layout';
-import StoreProvider from '@/providers/StoreProvider';
-import { useEffect, useState } from 'react';
 import { Router } from 'next/router';
-import PageLoader from '@/components/PageLoader/PageLoader';
+import { useEffect, useState } from 'react';
+import Layout from './layout';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(false);
