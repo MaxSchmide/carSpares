@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: absolute;
   background-color: #eee;
-  top: 56px;
+  top: 5.6rem;
   left: 0px;
   width: 200px;
   border: 1px solid ${theme.colors.secondaryShade};
@@ -16,6 +16,7 @@ export const Ul = styled.ul`
 `;
 
 export const ListItem = styled.li`
+  font-size: 1.6rem;
   padding: 6px 10px;
   position: relative;
   color: ${theme.colors.primary};

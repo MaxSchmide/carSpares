@@ -18,7 +18,7 @@ type Props = {
 const Home = ({ categories }: Props) => {
   return (
     <section className="container">
-      {/* <PageContainer>
+      <PageContainer>
         <H1>Showcase your love to car with CarSpares</H1>
         <SwiperContainer>
           <Swiper
@@ -48,22 +48,22 @@ const Home = ({ categories }: Props) => {
             ))}
           </Swiper>
         </SwiperContainer>
-      </PageContainer> */}
+      </PageContainer>
     </section>
   );
 };
 
 export default Home;
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   await mongooseConnect();
-//   const all = await Category.find().exec();
+export const getServerSideProps: GetServerSideProps = async () => {
+  await mongooseConnect();
+  const all = await Category.find().exec();
 
-//   const categories = convertToJson(all.filter((cat) => cat.image?.src));
+  const categories = convertToJson(all.filter((cat) => cat.image?.src));
 
-//   return {
-//     props: {
-//       categories,
-//     },
-//   };
-// };
+  return {
+    props: {
+      categories,
+    },
+  };
+};
