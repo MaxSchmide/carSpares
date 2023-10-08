@@ -163,6 +163,7 @@ select {
   background-color: ${theme.colors.secondary};
   color: white;
   font-size: 1.4rem;
+  font-weight: 500;
   padding: 0 0.6rem;
   border-radius: 999px;
   @media ${device.tablet} {
@@ -170,6 +171,8 @@ select {
     right: -6px;
   }
   @media ${device.mobile} {
+    top: -5px;
+    right: -5px;
     font-size: 0.8rem;
     padding: 0 0.3rem;
   }
@@ -184,7 +187,12 @@ select {
   transition: transform .2s ease-in-out;
 }
 
-
+.product-button {
+  @media ${device.mobile} {
+    font-size: 1.2rem;
+      width: 100%;
+  }
+}
 `;
 
 export const PageContainer = styled.div`

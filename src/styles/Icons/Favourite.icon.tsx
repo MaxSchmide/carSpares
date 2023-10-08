@@ -6,6 +6,7 @@ import { device } from '../BreakPoints';
 
 type Props = {
   $active?: boolean;
+  $size?: number;
 };
 
 const Icon = styled.div<Props>`
@@ -13,8 +14,8 @@ const Icon = styled.div<Props>`
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  padding: 0.6rem;
-  font-size: 2rem;
+  padding: ${(props) => props.$size! / 4 + 'rem'};
+  font-size: ${(props) => props.$size + 'rem'};
   background-color: #eee;
   color: #bbb;
   cursor: pointer;
@@ -35,18 +36,17 @@ const Icon = styled.div<Props>`
     color: ${theme.colors.secondary};
   }
 
-  @media ${device.tablet} {
-    font-size: 2.4rem;
-  }
-
   @media ${device.mobile} {
-    font-size: 1rem;
+    font-size: ${(props) => props.$size! / 2 + 'rem'};
   }
 `;
 
-export const FavouriteIcon = ({ $active }: Props) => {
+export const FavouriteIcon = ({ $active, $size = 2 }: Props) => {
   return (
-    <Icon $active={$active}>
+    <Icon
+      $active={$active}
+      $size={$size}
+    >
       {$active ? <AiFillHeart /> : <AiOutlineHeart />}
     </Icon>
   );

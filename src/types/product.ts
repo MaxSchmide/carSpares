@@ -3,7 +3,7 @@ import { ICategory } from './category';
 export interface IProduct {
   brand: string;
   title: string;
-  description: string;
+  description?: string;
   price: number;
   category: ICategory;
   images: string[];
@@ -11,7 +11,7 @@ export interface IProduct {
   article: string;
   __v: number;
   analogs: string[];
-  application: string;
+  application?: string;
   properties: Object;
   [key: string]: any;
 }

@@ -48,6 +48,10 @@ export const Title = styled.h4`
   &:hover {
     color: ${theme.colors.secondaryShade};
   }
+
+  @media ${device.mobile} {
+    font-size: 1.5rem;
+  }
 `;
 
 export const Price = styled.p`
@@ -57,6 +61,10 @@ export const Price = styled.p`
   line-height: 140%;
   &::before {
     content: '$';
+  }
+
+  @media ${device.mobile} {
+    font-size: 2rem;
   }
 `;
 
@@ -76,4 +84,8 @@ export const Icon = styled.div`
 export const P = styled.p`
   margin-bottom: 8px;
   font-size: 1.2rem;
+
+  @media ${device.mobile} {
+    font-size: 1rem;
+  }
 `;

@@ -9,7 +9,7 @@ export const MyButton = styled.button<ButtonProps>`
   padding: ${(props) => `${props.$size}px ${2 * props.$size!}px`};
   border-radius: 999px;
   font-weight: 500;
-  font-size: 1.6rem;
+  font-size: ${(props) => (props.$size! / 10) * 1.6 + 'rem'};
   white-space: nowrap;
   text-transform: uppercase;
   transition:
@@ -35,6 +35,6 @@ export const MyButton = styled.button<ButtonProps>`
   }
 
   @media ${device.mobile} {
-    font-size: 1rem;
+    font-size: ${(props) => (props.$size! / 10) * 1.3 + 'rem'};
   }
 `;
