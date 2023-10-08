@@ -4,12 +4,20 @@ import { Empty, Order, Products } from '@/styles/CartPage';
 import { useAppSelector } from '@/redux';
 import CartItem from '@/components/CartItem/CartItem';
 import { countTotalSum } from '@/utils/helpers';
+import { Breadcrumb } from '@/components/Breadcrumb';
 
 const Cart = () => {
   const { items } = useAppSelector((state) => state.cart);
+  const links = [
+    {
+      url: '/cart',
+      label: 'Cart',
+    },
+  ];
   return (
     <section className="container">
       <PageContainer>
+        <Breadcrumb links={links} />
         <Grid>
           <Products>
             {items.length > 0 ? (
