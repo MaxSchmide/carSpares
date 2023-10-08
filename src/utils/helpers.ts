@@ -1,6 +1,7 @@
 import { ICategory } from '@/types/category';
 import { theme } from '@/styles';
 import { Category } from '@/models/category.model';
+import { IProductCart } from '@/types/product';
 
 type Params = {
   [key: string]: string;
@@ -64,4 +65,8 @@ export const getDescendantCategories = async (categoryId: string = '') => {
   }
 
   return descendants;
+};
+
+export const countTotalSum = (items: IProductCart[]) => {
+  return items.reduce((acc, cur) => acc + cur.count * cur.price, 0);
 };

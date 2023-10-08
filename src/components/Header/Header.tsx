@@ -32,6 +32,7 @@ import MobileMenu from '../MobileMenu/MobileMenu';
 
 export const Header = () => {
   const { items } = useAppSelector((state) => state.favourites);
+  const { items: cartItems } = useAppSelector((state) => state.cart);
   const pathname = usePathname();
   const router = useRouter();
   const [showCatalog, setShowCatalog] = useState(false);
@@ -166,7 +167,7 @@ export const Header = () => {
           <Link
             href="/cart"
             className="nav-icon"
-            data-count={0}
+            data-count={cartItems.length}
             aria-label="Link to cart page"
           >
             <AiOutlineShoppingCart className="icon " />

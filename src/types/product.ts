@@ -23,3 +23,11 @@ export interface IProductCard {
   image: string;
   article: string;
 }
+
+export interface IProductCart {
+  _id: string;
+  title: string;
+  price: number;
+  image: string;
+  count: number;
+}

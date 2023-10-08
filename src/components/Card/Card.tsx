@@ -13,7 +13,12 @@ import { Button } from '../Button';
 import Link from 'next/link';
 import { FavouriteIcon } from '@/styles/Icons';
 import { IProductCard } from '@/types/product';
-import { toggleFavouriteItem, useAppDispatch, useAppSelector } from '@/redux';
+import {
+  addProductToCart,
+  toggleFavouriteItem,
+  useAppDispatch,
+  useAppSelector,
+} from '@/redux';
 
 type Props = {
   product: IProductCard;
@@ -21,11 +26,31 @@ type Props = {
 
 export const Card = ({ product }: Props) => {
   const { items } = useAppSelector((state) => state.favourites);
+  const { items: cartItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  const handleToggleFavourite = (product: IProductCard) => {
+
+  const isFavourite = items.some((item) => item._id === product._id);
+  const isAdded = cartItems.some((item) => item._id === product._id);
+
+  const handleToggleFavourite = () => {
     dispatch(toggleFavouriteItem(product));
   };
-  const isFavourite = items.some((item) => item._id === product._id);
+
+  const handleAddToCart = () => {
+    if (isAdded) {
+      alert('already in cart!');
+      return;
+    }
+    const payload = {
+      _id: product._id,
+      title: product.title,
+      image: product.image,
+      price: product.price,
+      count: 1,
+    };
+
+    dispatch(addProductToCart(payload));
+  };
 
   return (
     <Article>
@@ -37,7 +62,7 @@ export const Card = ({ product }: Props) => {
           alt={product.title}
           priority
         />
-        <Icon onClick={() => handleToggleFavourite(product)}>
+        <Icon onClick={handleToggleFavourite}>
           <FavouriteIcon $active={isFavourite} />
         </Icon>
       </ImageContainer>
@@ -47,7 +72,12 @@ export const Card = ({ product }: Props) => {
       </Link>
       <Flex>
         <Price>{Math.round(product.price)}</Price>
-        <Button $variant="secondary">Add to Cart</Button>
+        <Button
+          $variant={isAdded ? 'primary' : 'secondary'}
+          onClick={handleAddToCart}
+        >
+          {isAdded ? 'Added' : 'Add to cart'}
+        </Button>
       </Flex>
     </Article>
   );
