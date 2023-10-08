@@ -2,7 +2,7 @@ import { mongooseConnect } from '@/lib/mongoose';
 import { Category } from '@/models/category.model';
 import { PageContainer } from '@/styles';
 import { ICategory } from '@/types/category';
-import { H1, H3, SlideContainer, SwiperContainer } from '@/styles/HomePage';
+import { H1, H3, SlideContainer, SwiperContainer } from '@/styles/Homepage';
 import { convertToJson } from '@/utils/helpers';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
