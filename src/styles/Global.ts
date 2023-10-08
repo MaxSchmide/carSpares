@@ -188,6 +188,7 @@ select {
 }
 
 .product-button {
+  width: 20rem;
   @media ${device.mobile} {
     font-size: 1.2rem;
       width: 100%;

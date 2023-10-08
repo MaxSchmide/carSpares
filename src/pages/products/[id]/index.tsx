@@ -2,7 +2,12 @@ import { Breadcrumb } from '@/components/Breadcrumb';
 import { Button } from '@/components/Button';
 import { mongooseConnect } from '@/lib/mongoose';
 import { Product } from '@/models/product.model';
-import { toggleFavouriteItem, useAppDispatch, useAppSelector } from '@/redux';
+import {
+  addProductToCart,
+  toggleFavouriteItem,
+  useAppDispatch,
+  useAppSelector,
+} from '@/redux';
 import { PageContainer } from '@/styles';
 import { FavouriteIcon } from '@/styles/Icons';
 import {
@@ -36,6 +41,7 @@ type Props = {
 
 const ProductPage = ({ product }: Props) => {
   const dispatch = useAppDispatch();
+  const { items: cartItems } = useAppSelector((state) => state.cart);
   const { items } = useAppSelector((state) => state.favourites);
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const links = [
@@ -61,9 +67,26 @@ const ProductPage = ({ product }: Props) => {
   );
 
   const isFavourite = items.some((item) => item._id === product._id);
+  const isAdded = cartItems.some((item) => item._id === product._id);
 
   const handleSelectImage = (src: string) => {
     setSelectedImage(src);
+  };
+
+  const handleAddToCart = () => {
+    if (isAdded) {
+      alert('already in cart!');
+      return;
+    }
+    const payload = {
+      _id: product._id,
+      title: product.title,
+      image: product.images[0],
+      price: product.price,
+      count: 1,
+    };
+
+    dispatch(addProductToCart(payload));
   };
 
   const handleToggleFavourite = () => {
@@ -116,11 +139,12 @@ const ProductPage = ({ product }: Props) => {
           </Properties>
           <Buttons>
             <Button
-              $variant="primary"
+              $variant={isAdded ? 'primary' : 'secondary'}
               className="product-button"
               $size={12}
+              onClick={handleAddToCart}
             >
-              Add to card
+              {isAdded ? 'Added' : 'Add to cart'}
             </Button>
             <Icon onClick={handleToggleFavourite}>
               <FavouriteIcon

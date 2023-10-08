@@ -8,6 +8,7 @@ import {
   Icon,
   ImageContainer,
   MyImage,
+  MyLink,
   Price,
   Title,
   Value,
@@ -50,7 +51,9 @@ const CartItem = ({ product }: Props) => {
         />
       </ImageContainer>
       <Box>
-        <Title>{product.title}</Title>
+        <MyLink href={'/products/' + product._id}>
+          <Title>{product.title}</Title>
+        </MyLink>
         <Count>
           <MinusIcon
             $disable={product.count === 1}

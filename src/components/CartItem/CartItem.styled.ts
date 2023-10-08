@@ -1,5 +1,6 @@
 import { theme } from '@/styles';
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export const Article = styled.article`
@@ -49,6 +50,15 @@ export const Title = styled.h2`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+`;
+
+export const MyLink = styled(Link)`
+  text-decoration: none;
+  color: ${theme.colors.primary};
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: ${theme.colors.secondary};
+  }
 `;
 
 export const Count = styled.div`

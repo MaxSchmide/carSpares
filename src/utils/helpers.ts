@@ -68,5 +68,5 @@ export const getDescendantCategories = async (categoryId: string = '') => {
 };
 
 export const countTotalSum = (items: IProductCart[]) => {
-  return items.reduce((acc, cur) => acc + cur.count * cur.price, 0);
+  return Math.round(items.reduce((acc, cur) => acc + cur.count * cur.price, 0));
 };
