@@ -46,8 +46,13 @@ export const Card = ({ product }: Props) => {
         <Title>{product.title}</Title>
       </Link>
       <Flex>
-        <Price>{product.price}</Price>
-        <Button $variant="secondary">Add to Cart</Button>
+        <Price>{Math.round(product.price)}</Price>
+        <Button
+          $size={6}
+          $variant="secondary"
+        >
+          Add to Cart
+        </Button>
       </Flex>
     </Article>
   );

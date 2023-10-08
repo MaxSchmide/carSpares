@@ -1,6 +1,5 @@
 import Document, {
   DocumentContext,
-  DocumentInitialProps,
   Head,
   Html,
   Main,
@@ -8,10 +7,10 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-const MyDocument = ({ styles }: DocumentInitialProps) => {
+const MyDocument = () => {
   return (
     <Html lang="en">
-      <Head>{styles}</Head>
+      <Head></Head>
       <body>
         <Main />
         <NextScript />

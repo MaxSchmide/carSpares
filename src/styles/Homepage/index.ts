@@ -1,10 +1,11 @@
-import { theme } from '@/styles';
+import { device, theme } from '@/styles';
 import styled from 'styled-components';
 
 export const H1 = styled.h1`
+  display: block;
   text-align: center;
-  font-size: 48px;
-  margin-bottom: 24px;
+  font-size: 4rem;
+  margin-bottom: 2.4rem;
   text-transform: uppercase;
   background-image: linear-gradient(
     -225deg,
@@ -21,7 +22,10 @@ export const H1 = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textclip 5s reverse infinite;
-  display: inline-block;
+
+  @media ${device.mobile} {
+    font-size: 2rem;
+  }
 
   @keyframes textclip {
     to {
@@ -45,6 +49,7 @@ export const H3 = styled.h3`
   position: absolute;
   top: 50%;
   left: 50%;
+  font-size: 4rem;
   transform: translate(-50%, -50%);
   a {
     transition: color 0.2s ease-in-out;
@@ -53,13 +58,29 @@ export const H3 = styled.h3`
       color: ${theme.colors.secondary};
     }
   }
+
+  @media ${device.tablet} {
+    font-size: 3rem;
+  }
+
+  @media ${device.mobile} {
+    font-size: 1rem;
+  }
 `;
 
 export const SwiperContainer = styled.article`
   width: 80%;
-  height: 600px;
+  height: 60rem;
   margin: 0 auto;
   margin-bottom: 24px;
+
+  @media ${device.tablet} {
+    height: 40rem;
+  }
+  @media ${device.mobile} {
+    height: 20rem;
+    width: 100%;
+  }
 
   .swiper {
     height: 100%;

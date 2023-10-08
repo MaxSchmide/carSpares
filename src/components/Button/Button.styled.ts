@@ -1,4 +1,4 @@
-import { theme } from '@/styles';
+import { device, theme } from '@/styles';
 import { ButtonProps } from '@/types/button';
 import { getColorByProps } from '@/utils/helpers';
 import styled from 'styled-components';
@@ -6,11 +6,12 @@ import styled from 'styled-components';
 export const MyButton = styled.button<ButtonProps>`
   background-color: ${(props) => getColorByProps(props)};
   color: ${(props) => (props.$variant ? 'white' : theme.colors.primary)};
-  padding: 1rem 2rem;
+  padding: ${(props) => `${props.$size}px ${2 * props.$size!}px`};
   border-radius: 999px;
   font-weight: 500;
   font-size: 1.6rem;
   white-space: nowrap;
+  text-transform: uppercase;
   transition:
     background-color 0.2s ease,
     box-shadow 0.2s ease,
@@ -31,5 +32,9 @@ export const MyButton = styled.button<ButtonProps>`
   }
   &:active {
     transform: translateY(5%);
+  }
+
+  @media ${device.mobile} {
+    font-size: 1rem;
   }
 `;

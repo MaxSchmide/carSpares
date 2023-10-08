@@ -7,7 +7,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { FormEvent, MouseEvent, useEffect, useState } from 'react';
-import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
+import {
+  AiOutlineClose,
+  AiOutlineHeart,
+  AiOutlineMenu,
+  AiOutlineShoppingCart,
+} from 'react-icons/ai';
 import ReactSelect from 'react-select';
 import { Catalog } from '../Catalog';
 import {
@@ -18,16 +23,20 @@ import {
   Input,
   Label,
   Links,
+  MenuIcon,
   MyLink,
   Top,
 } from './Header.styled';
 import { createQueryString } from '@/utils/helpers';
+import MobileMenu from '../MobileMenu/MobileMenu';
 
 export const Header = () => {
   const { items } = useAppSelector((state) => state.favourites);
   const pathname = usePathname();
   const router = useRouter();
   const [showCatalog, setShowCatalog] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
   const [query, setQuery] = useState('');
   const [searchBy, setSearchBy] = useState<SelectOption | null>(null);
   const instanceId = new Date().getDay().toString();
@@ -45,7 +54,10 @@ export const Header = () => {
   const handleSubmitSearch = (e: FormEvent) => {
     e.preventDefault();
 
-    const params = createQueryString({ query, searchBy: searchBy!.value });
+    const params = createQueryString({
+      query,
+      searchBy: searchBy?.value || '',
+    });
 
     router.replace('/products' + params);
   };
@@ -60,6 +72,7 @@ export const Header = () => {
     setQuery('');
     setSearchBy(null);
     setShowCatalog(false);
+    setShowMenu(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -70,8 +83,12 @@ export const Header = () => {
     return () => window.removeEventListener('click', hideCatalog);
   }, []);
 
+  useEffect(() => {
+    document.body.classList.toggle('hidden', showMenu);
+  }, [showMenu]);
+
   return (
-    <header className="container">
+    <header className="container fixed">
       <Top>
         <MyLink href="/">
           <Image
@@ -107,6 +124,9 @@ export const Header = () => {
           <Button>Log in</Button>
           <Button $variant="secondary">Sign Up</Button>
         </Buttons>
+        <MenuIcon onClick={() => setShowMenu((prev) => !prev)}>
+          {showMenu ? <AiOutlineClose /> : <AiOutlineMenu />}
+        </MenuIcon>
       </Top>
       <Bottom>
         <CatalogButton onClick={handleShowCatalog}>
@@ -153,6 +173,12 @@ export const Header = () => {
           </Link>
         </Buttons>
       </Bottom>
+      <MobileMenu
+        handleSubmit={handleSubmitSearch}
+        show={showMenu}
+        query={query}
+        setQuery={(val) => setQuery(val)}
+      />
     </header>
   );
 };

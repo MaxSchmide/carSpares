@@ -3,6 +3,18 @@ import { theme } from './Theme';
 import { device } from './BreakPoints';
 
 export const GlobalStyles = createGlobalStyle`
+
+:root {
+  --grid-cols: 24;
+
+  @media ${device.tablet} {
+    --grid-cols: 12;
+  }
+  @media ${device.mobile} {
+    --grid-cols: 6;
+  }
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -112,13 +124,24 @@ select {
   margin: 0 auto;
 }
 
+.fixed {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
 .icon {
   color: ${theme.colors.primary};
   font-size: 3.2rem;
   cursor: pointer;
   transition: color .2s ease-in-out;
 
-  @media ${device.tablet} {
+  @media ${device.mobile} {
+    font-size: 1.6rem
   }
 }
 
@@ -146,17 +169,26 @@ select {
     top: -6px;
     right: -6px;
   }
+  @media ${device.mobile} {
+    font-size: 0.8rem;
+    padding: 0 0.3rem;
+  }
 }
 
 .category-link{
   text-decoration: none;
   color: inherit;
 }
+
 .menu-icon {
   transition: transform .2s ease-in-out;
 }
+
+
 `;
 
 export const PageContainer = styled.div`
   padding: 20px;
+  height: 100%;
+  width: 100%;
 `;

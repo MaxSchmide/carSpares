@@ -1,4 +1,4 @@
-import { theme } from '@/styles';
+import { device, theme } from '@/styles';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -6,9 +6,16 @@ export const Container = styled.div`
   background-color: #eee;
   top: 5.6rem;
   left: 0px;
-  width: 200px;
+  width: 20rem;
   border: 1px solid ${theme.colors.secondaryShade};
   z-index: 100;
+
+  @media ${device.tablet} {
+    width: 25rem;
+  }
+  @media ${device.mobile} {
+    top: 5.5rem;
+  }
 `;
 
 export const Ul = styled.ul`
@@ -37,14 +44,17 @@ export const ListItem = styled.li`
   &:hover .menu-icon {
     transform: translateX(5px);
   }
+  @media ${device.tablet} {
+    font-size: 2rem;
+  }
 `;
 
 export const Submenu = styled.ul`
   display: none;
   position: absolute;
   top: -1px;
-  right: -200px;
-  width: 200px;
+  right: -20rem;
+  width: 20rem;
   background-color: #eee;
   border: 1px solid ${theme.colors.secondaryShade};
 `;

@@ -24,6 +24,10 @@ export const Bottom = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.59);
+  @media ${device.mobile} {
+    display: none;
+  }
 `;
 
 export const CatalogButton = styled.div`
@@ -61,7 +65,10 @@ export const Form = styled.form`
   position: relative;
   z-index: 10;
   @media ${device.tablet} {
-    width: 60%;
+    width: 55%;
+  }
+  @media ${device.mobile} {
+    display: none;
   }
 `;
 
@@ -99,7 +106,10 @@ export const Buttons = styled.div`
   display: flex;
   gap: 2.4rem;
   @media ${device.tablet} {
-    gap: 1rem;
+    gap: 2rem;
+  }
+  @media ${device.mobile} {
+    display: none;
   }
 `;
 
@@ -110,5 +120,25 @@ export const MyLink = styled(Link)`
   @media ${device.tablet} {
     width: 9rem;
     height: 7.6rem;
+  }
+
+  @media ${device.mobile} {
+    width: 6rem;
+    height: 3.6rem;
+  }
+`;
+
+export const MenuIcon = styled.div`
+  display: none;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: ${theme.colors.secondary};
+  }
+  @media ${device.mobile} {
+    display: block;
   }
 `;

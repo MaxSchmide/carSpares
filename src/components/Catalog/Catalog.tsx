@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Container, ListItem, Submenu, Ul } from './Catalog.styled';
 import LoadingProvider from '@/providers/LoadingProvider';
 import { AiOutlineRight } from 'react-icons/ai';
@@ -19,6 +19,11 @@ export const Catalog = () => {
 
   const childCategories = getChildCategories(data, selected);
 
+  const handleSelectCategory = (e: React.MouseEvent, id: string) => {
+    e.stopPropagation();
+    setSelected(id);
+  };
+
   return (
     <Container>
       <LoadingProvider
@@ -26,12 +31,13 @@ export const Catalog = () => {
         size={25}
       >
         <ErrorProvider isError={isError}>
-          <Ul onMouseLeave={() => setSelected('')}>
+          <Ul onMouseLeave={(e) => handleSelectCategory(e, '')}>
             {parentCategories &&
               parentCategories.map((category) => (
                 <ListItem
                   key={category._id}
-                  onMouseEnter={() => setSelected(category._id)}
+                  onMouseEnter={(e) => handleSelectCategory(e, category._id)}
+                  onClick={(e) => handleSelectCategory(e, category._id)}
                 >
                   <Link
                     href={`/categories/${category._id}`}

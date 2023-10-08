@@ -1,4 +1,4 @@
-import { theme } from '@/styles';
+import { device, theme } from '@/styles';
 import styled from 'styled-components';
 import Image from 'next/image';
 
@@ -11,12 +11,20 @@ export const Article = styled.article`
   &:hover {
     box-shadow: 20px 20px 100px rgba(73, 73, 73, 0.15);
   }
+
+  @media ${device.mobile} {
+    grid-column: 1/-1;
+  }
 `;
 
 export const ImageContainer = styled.div`
   position: relative;
-  height: 240px;
+  height: 24rem;
   margin-bottom: 24px;
+
+  @media ${device.mobile} {
+    height: 12rem;
+  }
 `;
 
 export const MyImage = styled(Image)`
@@ -24,11 +32,11 @@ export const MyImage = styled(Image)`
 `;
 
 export const Title = styled.h4`
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 21px;
-  height: 42px;
+  line-height: 2rem;
+  height: 4rem;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -43,7 +51,7 @@ export const Title = styled.h4`
 `;
 
 export const Price = styled.p`
-  font-size: 22px;
+  font-size: 2.4rem;
   font-style: normal;
   font-weight: 800;
   line-height: 140%;
@@ -67,5 +75,5 @@ export const Icon = styled.div`
 
 export const P = styled.p`
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 1.2rem;
 `;

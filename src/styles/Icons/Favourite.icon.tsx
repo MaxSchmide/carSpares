@@ -2,6 +2,7 @@ import React from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import styled from 'styled-components';
 import { theme } from '../Theme';
+import { device } from '../BreakPoints';
 
 type Props = {
   $active?: boolean;
@@ -12,7 +13,8 @@ const Icon = styled.div<Props>`
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  padding: 8px;
+  padding: 0.6rem;
+  font-size: 2rem;
   background-color: #eee;
   color: #bbb;
   cursor: pointer;
@@ -31,6 +33,14 @@ const Icon = styled.div<Props>`
   &:hover {
     background-color: ${theme.colors.secondaryShade}3f;
     color: ${theme.colors.secondary};
+  }
+
+  @media ${device.tablet} {
+    font-size: 2.4rem;
+  }
+
+  @media ${device.mobile} {
+    font-size: 1rem;
   }
 `;
 
